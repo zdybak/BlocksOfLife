@@ -66,10 +66,23 @@ void drawAllLife(bool *life)
     int x;
     int y;
 
-    for(x=0; x < LIFEWIDTH; x++) {
-        for(y=0; y < LIFEHEIGHT; y++){
-            if( life[(x*10)+y] ){
-                drawLife((float) x,(float) y, BLUE);
+    for(x=0; x <= LIFEWIDTH; x++) {
+        for(y=0; y <= LIFEHEIGHT; y++){
+            if( life[(x*LIFEWIDTH)+y] ){
+                Color col = BLUE;
+                if(x==0){
+                    col = RED;
+                }
+                if(y==0){
+                    col = ORANGE;
+                }
+                if(x==LIFEWIDTH){
+                    col = PURPLE;
+                }
+                if(y==LIFEHEIGHT){
+                    col = GREEN;
+                }
+                drawLife((float) x,(float) y, col);
             }
         }
     }
@@ -93,25 +106,25 @@ bool* updateLife(bool *life)
 
     bool* newLife = copyLife(life);
 
-    for(x=0; x < LIFEWIDTH; x++) {
-        for(y=0; y < LIFEHEIGHT; y++){
+    for(x=0; x <= LIFEWIDTH; x++) {
+        for(y=0; y <= LIFEHEIGHT; y++){
             //begin neighbor check
             int neighbors = 0;
             
             if(x > 0) {
                 //check north
-                if(life[((x-1)*10)+y]){
+                if(life[((x-1)*LIFEWIDTH)+y]){
                     neighbors++;
                 }
                 //check northwest
                 if(y > 0) {
-                    if(life[((x-1)*10)+(y-1)]){
+                    if(life[((x-1)*LIFEWIDTH)+(y-1)]){
                         neighbors++;
                     }
                 }
                 //check northeast
-                if(y < LIFEHEIGHT-1) {
-                    if(life[((x-1)*10)+(y+1)]){
+                if(y < LIFEHEIGHT) {
+                    if(life[((x-1)*LIFEWIDTH)+(y+1)]){
                         neighbors++;
                     }
                 }
@@ -119,38 +132,38 @@ bool* updateLife(bool *life)
 
             if(y > 0){
                 //check west
-                if(life[(x*10)+(y-1)]){
+                if(life[(x*LIFEWIDTH)+(y-1)]){
                     neighbors++;
                 }
             }
 
-            if(y < LIFEHEIGHT-1){
+            if(y < LIFEHEIGHT){
                 //check east
-                if(life[(x*10)+(y+1)]){
+                if(life[(x*LIFEWIDTH)+(y+1)]){
                     neighbors++;
                 }
             }
 
-            if(x < LIFEWIDTH-1){
+            if(x < LIFEWIDTH){
                 //southwest
                 if(y > 0){
-                    if(life[((x+1)*10)+(y-1)]){
+                    if(life[((x+1)*LIFEWIDTH)+(y-1)]){
                         neighbors++;
                     }
                 }
                 //south
-                if(life[((x+1)*10)+y]){
+                if(life[((x+1)*LIFEWIDTH)+y]){
                     neighbors++;
                 }
                 //southeast
                 if(y < LIFEHEIGHT-1){
-                    if(life[((x+1)*10)+(y+1)]){
+                    if(life[((x+1)*LIFEWIDTH)+(y+1)]){
                         neighbors++;
                     }
                 }
             }
             //end neighbor checks
-            int cind = (x*10)+y;
+            int cind = (x*LIFEWIDTH)+y;
             bool cell = life[cind];
 
             //any live cell with less than 2 neighbors dies from underpop
