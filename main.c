@@ -1,13 +1,16 @@
-//blocks of life
+//blocks of life, a conway's game of life implementation in C rendered with raylib
 
 #include "include/raylib.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
 
+//offset the grid coords from origin
 #define XCOORD -10.0f
 #define YCOORD -10.0f
 #define HALFCUBE 0.5f
+
+//set size of the living matrix
 #define LIFESIZE 400
 #define LIFEWIDTH 20
 #define LIFEHEIGHT 20
@@ -170,7 +173,7 @@ int main(void)
     const int screenWidth = 1920;
     const int screenHeight = 1080;
     
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+    InitWindow(screenWidth, screenHeight, "Blocks Of Life");
 
     Camera3D camera = { 0 };
     camera.position = (Vector3) { -6.0f, 20.0f, -22.0f };
