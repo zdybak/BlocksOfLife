@@ -1,5 +1,5 @@
 game: 
-	gcc main.c keyboard.c -o game.exe -O1 -Wall -std=c99 -Wno-missing-braces -I include/ -L lib/ -lraylib -lopengl32 -lgdi32 -lwinmm
+	gcc main.c -o blocksOfLife.exe -O1 -Wall -std=c99 -Wno-missing-braces -I include/ -L lib/ -lraylib -lopengl32 -lgdi32 -lwinmm
 
 clean:
-	-del -fR game.exe
+	-del -fR blocksOfLife.exe
