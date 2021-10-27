@@ -24,7 +24,7 @@ bool* seedLife()
     srand( (unsigned)time(NULL) );
 
     for(i=0; i < LIFESIZE; i++) {
-        life[i] = ((rand()%2) == 1);
+        life[i] = ((rand()%6) == 1);
     }
 
     return life;
@@ -169,6 +169,8 @@ bool* updateLife(bool *life)
             //any live cell with less than 2 neighbors dies from underpop
             if(cell && neighbors < 2){
                 newLife[cind] = false;
+            } else if (cell && (neighbors == 2 || neighbors == 3)) {
+                newLife[cind] = true;
             } else if (cell && neighbors > 3) {
                 newLife[cind] = false;
             } else if (!cell && neighbors == 3) {
