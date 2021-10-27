@@ -50,9 +50,9 @@ void drawLife(float x, float y, Color col)
     
     if(finalX >= 0 && finalY >= 0){
         cubePosition = (Vector3){ finalX-HALFCUBE, 0.5f, finalY-HALFCUBE };
-    } else if (finalX < 0 && finalY > 0) {
+    } else if (finalX <= 0 && finalY >= 0) {
         cubePosition = (Vector3){ finalX+HALFCUBE, 0.5f, finalY-HALFCUBE };
-    } else if (finalX < 0 && finalY < 0) {
+    } else if (finalX <= 0 && finalY <= 0) {
         cubePosition = (Vector3){ finalX+HALFCUBE, 0.5f, finalY+HALFCUBE };
     } else {
         cubePosition = (Vector3){ finalX-HALFCUBE, 0.5f, finalY+HALFCUBE };
@@ -235,7 +235,7 @@ int main(void)
             BeginMode3D(camera);
 
                 drawAllLife(life);
-               
+                               
                 DrawGrid(20, 1.0f);
 
             EndMode3D();
